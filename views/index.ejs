@@ -8,6 +8,7 @@
     </style>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="/galleryScripts/ng-image-gallery.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body ng-controller="nav" ng-cloak>
 <md-toolbar>
@@ -27,7 +28,7 @@
             <md-nav-item md-nav-href="#gallery" name="gallery">Gallery</md-nav-item>
             <md-nav-item md-nav-href="#light" name="light">For the light-hearted</md-nav-item>
         </md-nav-bar>
-        <div id="main">
+        <div id="main" class="ext-content">
             <div ng-view></div>
         </div>
     </md-content>
@@ -49,49 +50,52 @@
     /**
      * You must include the dependency on 'ngMaterial'
      */
-    var app = angular.module('app', ['ngMaterial','ngRoute','thatisuday.ng-image-gallery']);
+    var app = angular.module('app', ['ngMaterial', 'ngRoute', 'thatisuday.ng-image-gallery']);
 
-    app.config(function($routeProvider, $locationProvider, ngImageGalleryOptsProvider) {
+    app.config(function ($routeProvider, $locationProvider, ngImageGalleryOptsProvider) {
 //        $locationProvider.html5Mode(true);
         ngImageGalleryOptsProvider.setOpts({
-            thumbnails  :   true,
-            inline      :   false,
-            imgBubbles  :   false,
-            bgClose     :   true,
-            bubbles     :   true,
-            imgAnim 	: 	'fadeup'
+            thumbnails: true,
+            inline: false,
+            imgBubbles: false,
+            bgClose: true,
+            bubbles: true,
+            imgAnim: 'fadeup'
         });
         $routeProvider
             .when("/", {
-                templateUrl : 'home.html',
-                controller : 'nav'
+                templateUrl: 'home.html',
+                controller: 'nav'
             })
             .when("/home", {
-                templateUrl : 'home.html',
-                controller : 'nav'
+                templateUrl: 'home.html',
+                controller: 'nav'
             })
             .when("/event", {
-                templateUrl : 'event.html',
-                controller : 'event'
+                templateUrl: 'event.html',
+                controller: 'event'
             })
             .when("/gallery", {
-                templateUrl : 'gallery.html',
-                controller : 'gallery'
+                templateUrl: 'gallery.html',
+                controller: 'gallery'
             })
             .when("/light", {
-                templateUrl : 'light.html',
-                controller : 'light'
+                templateUrl: 'light.html',
+                controller: 'light'
             });
     });
 
     app.controller('nav', function ($scope, $location) {
         $scope.title = 'Anjana weds Sandeep';
-        console.log($location.path());
         var currentPath = $location.path();
         var splitPath = currentPath.split('/');
         console.log(splitPath);
-        $scope.currentNavItem = currentPath.split('/')[1];
-
+        if (splitPath.length == 1 || splitPath[1] == '') {
+            $scope.currentNavItem = 'home';
+        }
+        else {
+            $scope.currentNavItem = currentPath.split('/')[1];
+        }
     });
 
     app.controller('event', function ($scope) {
@@ -104,25 +108,34 @@
         $scope.currentNavItem = 'event';
         $scope.images = [
             {
-                title : 'This is amazing photo of nature',
-                alt : 'amazing nature photo',
-                thumbUrl : 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793__340.jpg',
-                url : 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793_960_720.jpg',
-                extUrl : 'http://mywebsitecpm/photo/1453793'
+                title: 'This is amazing photo of nature',
+                alt: 'amazing nature photo',
+                thumbUrl: 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793__340.jpg',
+                url: 'https://pixabay.com/static/uploads/photo/2016/06/13/07/32/cactus-1453793_960_720.jpg',
+                extUrl: 'http://mywebsitecpm/photo/1453793'
             },
             {
-                url : 'https://pixabay.com/static/uploads/photo/2016/06/10/22/25/ortler-1449018_960_720.jpg'
+                url: 'http://anjanasandeep.com/sandeep.jpg'
             },
             {
-                thumbUrl : 'https://pixabay.com/static/uploads/photo/2016/04/11/18/53/aviator-1322701__340.jpg',
-                url : 'https://pixabay.com/static/uploads/photo/2016/04/11/18/53/aviator-1322701_960_720.jpg'
+                thumbUrl: 'https://pixabay.com/static/uploads/photo/2016/04/11/18/53/aviator-1322701__340.jpg',
+                url: 'https://pixabay.com/static/uploads/photo/2016/04/11/18/53/aviator-1322701_960_720.jpg'
+            },
+            {
+                url: 'http://anjanasandeep.com/sandeep.jpg'
+            },
+            {
+                url: 'http://anjanasandeep.com/sandeep.jpg'
+            },
+            {
+                url: 'http://anjanasandeep.com/sandeep.jpg'
             }
         ];
         $scope.methods = {};
 
 // so you will bind openGallery method to a button on page
 // to open this gallery like ng-click="openGallery();"
-        $scope.openGallery = function(){
+        $scope.openGallery = function () {
             $scope.methods.open();
 
             // You can also open gallery model with visible image index
@@ -131,55 +144,28 @@
         };
 
 // Similar to above function
-        $scope.closeGallery = function(){
+        $scope.closeGallery = function () {
             $scope.methods.close();
         };
 
-        $scope.nextImg = function(){
+        $scope.nextImg = function () {
             $scope.methods.next();
         };
 
-        $scope.prevImg = function(){
+        $scope.prevImg = function () {
             $scope.methods.prev();
         };
         $scope.conf = {
-            thumbnails 	: 	true,
-            inline		: 	false,
-            bubbles		: 	true,
-            imgBubbles 	: 	false,
-            bgClose		: 	false,
-            imgAnim		: 	'fadeup'
+            thumbnails: true,
+            inline: false,
+            bubbles: true,
+            imgBubbles: false,
+            bgClose: false,
+            imgAnim: 'fadeup'
         };
-        $scope.opened = function(){
+        $scope.opened = function () {
             alert('Gallery opened'); // or do something else
         };
-//        $scope.photos = [
-//            {src: 'http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg', desc: 'Image 01'},
-//            {src: 'http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg', desc: 'Image 02'},
-//            {src: 'http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg', desc: 'Image 03'},
-//            {src: 'http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg', desc: 'Image 04'},
-//            {src: 'http://farm9.staticflickr.com/8315/7918425138_b739f0df53_b.jpg', desc: 'Image 05'},
-//            {src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'},
-//
-//        ];
-//// initial image index
-//        $scope._Index = 0;
-//// if a current image is the same as requested image
-//        $scope.isActive = function (index) {
-//            return $scope._Index === index;
-//        };
-//// show prev image
-//        $scope.showPrev = function () {
-//            $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.photos.length - 1;
-//        };
-//// show next image
-//        $scope.showNext = function () {
-//            $scope._Index = ($scope._Index < $scope.photos.length - 1) ? ++$scope._Index : 0;
-//        };
-//// show a certain image
-//        $scope.showPhoto = function (index) {
-//            $scope._Index = index;
-//        };
     });
 
     app.controller('light', function ($scope) {
