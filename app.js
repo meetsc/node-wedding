@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-// var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -28,11 +28,11 @@ app.use(express.static('res'));
 app.use('/galleryScripts', express.static(__dirname + '/node_modules/ng-image-gallery/dist/'));
 
 
-// if (host == 'ip-35-154-125-190') {
-//     app.BASE_URL = 'http://anjanasandeep.com';
-// } else {
-//     app.BASE_URL = 'http://localhost';
-// }
+if (host == 'ip-35-154-125-190') {
+    app.BASE_URL = 'http://anjanasandeep.com';
+} else {
+    app.BASE_URL = 'http://localhost';
+}
 
 app.use('/', index);
 
