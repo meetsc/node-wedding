@@ -28,7 +28,7 @@ app.use(express.static('res'));
 app.use('/galleryScripts', express.static(__dirname + '/node_modules/ng-image-gallery/dist/'));
 
 
-if (host == 'ip-35-154-56-54') {
+if (host == 'ip-35-154-125-190') {
     app.BASE_URL = 'http://anjanasandeep.com';
 } else {
     app.BASE_URL = 'http://localhost';
