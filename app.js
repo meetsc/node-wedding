@@ -1,10 +1,10 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 1337;
 var host = require('os').hostname();
 var index = require('./routes/index');
 
@@ -28,11 +28,11 @@ app.use(express.static('res'));
 app.use('/galleryScripts', express.static(__dirname + '/node_modules/ng-image-gallery/dist/'));
 
 
-if (host == 'ip-35-154-125-190') {
-    app.BASE_URL = 'http://anjanasandeep.com';
-} else {
-    app.BASE_URL = 'http://localhost';
-}
+// if (host == 'ip-35-154-125-190') {
+//     app.BASE_URL = 'http://anjanasandeep.com';
+// } else {
+//     app.BASE_URL = 'http://localhost';
+// }
 
 app.use('/', index);
 
@@ -53,7 +53,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-app.listen(port, '127.0.0.1', function () {
+app.listen(port, 'localhost', function () {
 });
 console.log('The magic happens on port ' + port);
 
