@@ -24,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 app.use(express.static('views'));
-app.use(express.static('res'));
 app.use('/galleryScripts', express.static(__dirname + '/node_modules/ng-image-gallery/dist/'));
 
 
