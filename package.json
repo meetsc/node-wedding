@@ -15,5 +15,23 @@
     "morgan": "~1.7.0",
     "ng-image-gallery": "^2.0.8",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-util": "latest",
+    "gulp-sass": "latest",
+    "gulp-coffee": "latest",
+    "gulp-uglify": "latest",
+    "gulp-concat": "latest",
+    "gulp-connect": "latest",
+    "gulp-stylus": "latest",
+    "gulp-livereload": "latest",
+    "gulp-include": "latest",
+    "gulp-browserify": "latest",
+    "gulp-filter": "latest",
+    "gulp-watch": "latest",
+    "gulp-rename": "latest",
+    "gulp-minify-css": "latest",
+    "main-bower-files": "latest"
   }
 }
