@@ -23,7 +23,7 @@
 <div ng-cloak>
     <md-content class="md-padding">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-href="#home" name="home">Home</md-nav-item>
+            <!--<md-nav-item md-nav-href="#home" name="home">Home</md-nav-item>-->
             <md-nav-item md-nav-href="#event" name="event">The event</md-nav-item>
             <md-nav-item md-nav-href="#gallery" name="gallery">Gallery</md-nav-item>
             <md-nav-item md-nav-href="#light" name="light">For the light-hearted</md-nav-item>
@@ -64,13 +64,13 @@
         });
         $routeProvider
             .when("/", {
-                templateUrl: 'home.html',
+                templateUrl: 'event.html',
                 controller: 'nav'
             })
-            .when("/home", {
-                templateUrl: 'home.html',
-                controller: 'nav'
-            })
+//            .when("/home", {
+//                templateUrl: 'event.html',
+//                controller: 'nav'
+//            })
             .when("/event", {
                 templateUrl: 'event.html',
                 controller: 'event'
@@ -90,7 +90,7 @@
         var currentPath = $location.path();
         var splitPath = currentPath.split('/');
         if (splitPath.length == 1 || splitPath[1] == '') {
-            $scope.currentNavItem = 'home';
+            $scope.currentNavItem = 'event';
         }
         else {
             $scope.currentNavItem = currentPath.split('/')[1];
